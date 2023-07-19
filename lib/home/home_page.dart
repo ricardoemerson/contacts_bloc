@@ -13,33 +13,59 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.0),
           child: Wrap(
+            runSpacing: 4,
+            spacing: 4,
             children: [
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, '/bloc'),
-                child: const Card(
-                  child: Padding(
-                    padding: EdgeInsets.all(28.0),
-                    child: Text('Bloc'),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: MediaQuery.sizeOf(context).width * .3,
+                  ),
+                  child: const Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(28.0),
+                      child: Text(
+                        'Bloc',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                 ),
               ),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, '/freezed'),
-                child: const Card(
-                  child: Padding(
-                    padding: EdgeInsets.all(28.0),
-                    child: Text('Freezed'),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: MediaQuery.sizeOf(context).width * .3,
+                  ),
+                  child: const Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(28.0),
+                      child: Text(
+                        'Freezed',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                 ),
               ),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, '/contacts/list'),
-                child: const Card(
-                  child: Padding(
-                    padding: EdgeInsets.all(28.0),
-                    child: Text('Contacts'),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: MediaQuery.sizeOf(context).width * .3,
+                  ),
+                  child: const Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(28.0),
+                      child: Text(
+                        'Contacts',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                 ),
               ),
