@@ -9,8 +9,8 @@ part 'example_state.dart';
 class ExampleBloc extends Bloc<ExampleEvent, ExampleState> {
   ExampleBloc() : super(ExampleInitial()) {
     on<ExampleFindNameEvent>(_findNames);
-    on<ExampleRemoveNameEvent>(_removeName);
     on<ExampleAddNameEvent>(_addName);
+    on<ExampleRemoveNameEvent>(_removeName);
   }
 
   FutureOr<void> _findNames(ExampleFindNameEvent event, Emitter<ExampleState> emit) async {
