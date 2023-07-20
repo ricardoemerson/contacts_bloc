@@ -1,5 +1,8 @@
 {
   "flutterTools.getxDisplayContextMenu": false,
   "flutterTools.mobxDisplayContextMenu": false,
-  "flutterTools.modularDisplayContextMenu": false
+  "flutterTools.modularDisplayContextMenu": false,
+  "cSpell.words": [
+    "Streamable"
+  ]
 }
