@@ -23,7 +23,6 @@ class ContactListBloc extends Bloc<ContactListEvent, ContactListState> {
   FutureOr<void> _findAll(_ContactListEventFindAll event, Emitter<ContactListState> emit) async {
     try {
       emit(const ContactListState.loading());
-      log('emit:');
 
       await Future.delayed(const Duration(seconds: 1));
 
