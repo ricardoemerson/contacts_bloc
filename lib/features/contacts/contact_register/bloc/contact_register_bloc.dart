@@ -12,10 +12,10 @@ part 'contact_register_event.dart';
 part 'contact_register_state.dart';
 
 class ContactRegisterBloc extends Bloc<ContactRegisterEvent, ContactRegisterState> {
-  final ContactRepository _repository;
+  final ContactRepository _contactRepository;
 
-  ContactRegisterBloc({required ContactRepository repository})
-      : _repository = repository,
+  ContactRegisterBloc({required ContactRepository contactRepository})
+      : _contactRepository = contactRepository,
         super(const ContactRegisterState.initial()) {
     on<ContactRegisterEvent>(_save);
   }
@@ -31,7 +31,7 @@ class ContactRegisterBloc extends Bloc<ContactRegisterEvent, ContactRegisterStat
 
       final contact = ContactModel(name: event.name, email: event.email);
 
-      await _repository.create(contact);
+      await _contactRepository.create(contact);
 
       emit(const ContactRegisterState.success());
     } on Exception catch (err, s) {

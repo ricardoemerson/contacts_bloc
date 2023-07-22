@@ -5,12 +5,14 @@ import 'features/bloc_example/bloc/example_bloc.dart';
 import 'features/bloc_example/bloc_example_page.dart';
 import 'features/contacts/contact_register/bloc/contact_register_bloc.dart';
 import 'features/contacts/contact_register/contact_register_page.dart';
+import 'features/contacts/contact_update/bloc/contact_update_bloc.dart';
 import 'features/contacts/contact_update/contact_update_page.dart';
 import 'features/contacts/contacts_list/bloc/contact_list_bloc.dart';
 import 'features/contacts/contacts_list/contacts_list_page.dart';
 import 'features/freezed_example/bloc/freezed_bloc.dart';
 import 'features/freezed_example/freezed_example_page.dart';
 import 'home/home_page.dart';
+import 'models/contact_model.dart';
 import 'repositories/contact_repository.dart';
 
 void main() {
@@ -47,13 +49,20 @@ class MyApp extends StatelessWidget {
               ),
           '/contacts/register': (context) => BlocProvider(
                 create: (context) =>
-                    ContactRegisterBloc(repository: context.read<ContactRepository>()),
+                    ContactRegisterBloc(contactRepository: context.read<ContactRepository>()),
                 child: const ContactRegisterPage(),
               ),
-          '/contacts/update': (context) => BlocProvider(
-                create: (context) => ContactListBloc(repository: context.read<ContactRepository>()),
-                child: const ContactUpdatePage(),
+          '/contacts/update': (context) {
+            final contact = ModalRoute.of(context)!.settings.arguments as ContactModel;
+
+            return BlocProvider(
+              create: (context) =>
+                  ContactUpdateBloc(contactRepository: context.read<ContactRepository>()),
+              child: ContactUpdatePage(
+                contact: contact,
               ),
+            );
+          },
         },
       ),
     );
