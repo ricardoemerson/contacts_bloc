@@ -1,9 +1,1 @@
-{
-  "contacts": [
-    {
-      "id": "afdb0748-044e-4877-a1ad-1bb3c78447c5",
-      "name": "Ricardo Emerson",
-      "email": "ricardo_emerson@yahoo.com.br"
-    }
-  ]
-}
+{"contacts":[{"id":1,"name":"Ricardo Emerson","email":"ricardo_emerson@yahoo.com.br"},{"id":2,"name":"Pedro","email":"pedro@gmail"},{"id":3,"name":"Airton","email":"airton@outlook.com "},{"id":4,"name":"teste","email":"teste@yahoo.com "},{"id":5,"name":"tghjji","email":"teste@outlook.com "}]}

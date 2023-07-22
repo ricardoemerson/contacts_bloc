@@ -16,7 +16,12 @@ class ContactsListPage extends StatelessWidget {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, '/contacts/register'),
+        onPressed: () async {
+          await Navigator.pushNamed(context, '/contacts/register');
+
+          // ignore: use_build_context_synchronously
+          context.read<ContactListBloc>().add(const ContactListEvent.findAll());
+        },
         child: const Icon(Icons.add),
       ),
       body: BlocListener<ContactListBloc, ContactListState>(
