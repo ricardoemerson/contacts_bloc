@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
@@ -7,21 +6,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../models/contact_model.dart';
 import '../../../../repositories/contact_repository.dart';
 
-part 'contact_list_bloc.freezed.dart';
-part 'contact_list_event.dart';
+part 'contact_list_cubit.freezed.dart';
 part 'contact_list_state.dart';
 
-class ContactListBloc extends Bloc<ContactListEvent, ContactListState> {
+class ContactListCubit extends Cubit<ContactListState> {
   final ContactRepository _contactRepository;
 
-  ContactListBloc({required ContactRepository contactRepository})
+  ContactListCubit({required ContactRepository contactRepository})
       : _contactRepository = contactRepository,
-        super(const ContactListState.initial()) {
-    on<_ContactListEventFindAll>(_findAll);
-    on<_ContactListEventDelete>(_delete);
-  }
+        super(const ContactListState.initial());
 
-  FutureOr<void> _findAll(_ContactListEventFindAll event, Emitter<ContactListState> emit) async {
+  Future<void> findAll() async {
     try {
       emit(const ContactListState.loading());
 
@@ -39,18 +34,15 @@ class ContactListBloc extends Bloc<ContactListEvent, ContactListState> {
     }
   }
 
-  FutureOr<void> _delete(
-    _ContactListEventDelete event,
-    Emitter<ContactListState> emit,
-  ) async {
+  Future<void> delete(ContactModel contact) async {
     try {
       emit(const ContactListState.loading());
 
       await Future.delayed(const Duration(seconds: 1));
 
-      await _contactRepository.delete(event.contact);
+      await _contactRepository.delete(contact);
 
-      add(const ContactListEvent.findAll());
+      findAll();
     } on Exception catch (err, s) {
       const message = 'Erro ao remover contato.';
 

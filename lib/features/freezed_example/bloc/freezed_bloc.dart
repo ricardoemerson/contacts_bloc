@@ -27,7 +27,7 @@ class FreezedBloc extends Bloc<FreezedEvent, FreezedState> {
     emit(FreezedState.data(names: names));
   }
 
-  Future<FutureOr<void>> _addName(_FreezedAddNameEvent event, Emitter<FreezedState> emit) async {
+  FutureOr<void> _addName(_FreezedAddNameEvent event, Emitter<FreezedState> emit) async {
     // final names = state.maybeWhen(
     //   data: (names) => [...names, event.name],
     //   orElse: () => <String>[event.name],

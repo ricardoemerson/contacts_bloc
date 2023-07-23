@@ -69,6 +69,23 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, '/contacts-cubit/list'),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: MediaQuery.sizeOf(context).width * .3,
+                  ),
+                  child: const Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(28.0),
+                      child: Text(
+                        'Contacts Cubit',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

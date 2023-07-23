@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
@@ -7,26 +6,21 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../models/contact_model.dart';
 import '../../../../repositories/contact_repository.dart';
 
-part 'contact_update_bloc.freezed.dart';
-part 'contact_update_event.dart';
+part 'contact_update_cubit.freezed.dart';
 part 'contact_update_state.dart';
 
-class ContactUpdateBloc extends Bloc<ContactUpdateEvent, ContactUpdateState> {
+class ContactUpdateCubit extends Cubit<ContactUpdateState> {
   final ContactRepository _contactRepository;
 
-  ContactUpdateBloc({required ContactRepository contactRepository})
+  ContactUpdateCubit({required ContactRepository contactRepository})
       : _contactRepository = contactRepository,
-        super(const ContactUpdateState.initial()) {
-    on<ContactUpdateEvent>(_update);
-  }
+        super(const ContactUpdateState.initial());
 
-  FutureOr<void> _update(ContactUpdateEvent event, Emitter<ContactUpdateState> emit) async {
+  Future<void> update(ContactModel contact) async {
     try {
       emit(const ContactUpdateState.loading());
 
       await Future.delayed(const Duration(seconds: 2));
-
-      final contact = ContactModel(id: event.id, name: event.name, email: event.email);
 
       await _contactRepository.update(contact);
 
