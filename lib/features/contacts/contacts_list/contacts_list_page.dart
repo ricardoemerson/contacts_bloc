@@ -92,6 +92,14 @@ class ContactsListPage extends StatelessWidget {
                               },
                               title: Text(contact.name),
                               subtitle: Text(contact.email),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  context
+                                      .read<ContactListBloc>()
+                                      .add(ContactListEvent.delete(contact: contact));
+                                },
+                                icon: const Icon(Icons.delete),
+                              ),
                             );
                           },
                         ),
